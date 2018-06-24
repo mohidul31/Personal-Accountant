@@ -1,0 +1,11 @@
+C:\Users\Lenovo\source\repos\PersonalAccountant\PersonalAccountant.Web\bin\Debug\netcoreapp2.0\PersonalAccountant.Web.deps.json
+C:\Users\Lenovo\source\repos\PersonalAccountant\PersonalAccountant.Web\bin\Debug\netcoreapp2.0\PersonalAccountant.Web.runtimeconfig.json
+C:\Users\Lenovo\source\repos\PersonalAccountant\PersonalAccountant.Web\bin\Debug\netcoreapp2.0\PersonalAccountant.Web.runtimeconfig.dev.json
+C:\Users\Lenovo\source\repos\PersonalAccountant\PersonalAccountant.Web\bin\Debug\netcoreapp2.0\PersonalAccountant.Web.dll
+C:\Users\Lenovo\source\repos\PersonalAccountant\PersonalAccountant.Web\bin\Debug\netcoreapp2.0\PersonalAccountant.Web.pdb
+C:\Users\Lenovo\source\repos\PersonalAccountant\PersonalAccountant.Web\obj\Debug\netcoreapp2.0\PersonalAccountant.Web.csprojAssemblyReference.cache
+C:\Users\Lenovo\source\repos\PersonalAccountant\PersonalAccountant.Web\obj\Debug\netcoreapp2.0\PersonalAccountant.Web.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\source\repos\PersonalAccountant\PersonalAccountant.Web\obj\Debug\netcoreapp2.0\PersonalAccountant.Web.AssemblyInfoInputs.cache
+C:\Users\Lenovo\source\repos\PersonalAccountant\PersonalAccountant.Web\obj\Debug\netcoreapp2.0\PersonalAccountant.Web.AssemblyInfo.cs
+C:\Users\Lenovo\source\repos\PersonalAccountant\PersonalAccountant.Web\obj\Debug\netcoreapp2.0\PersonalAccountant.Web.dll
+C:\Users\Lenovo\source\repos\PersonalAccountant\PersonalAccountant.Web\obj\Debug\netcoreapp2.0\PersonalAccountant.Web.pdb
