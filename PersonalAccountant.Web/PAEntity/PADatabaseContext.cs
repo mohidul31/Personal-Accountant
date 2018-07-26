@@ -15,6 +15,8 @@ namespace PersonalAccountant.Web.PAEntity
         public virtual DbSet<Accounts> Accounts { get; set; }
         public virtual DbSet<IncomeCategory> IncomeCategory { get; set; }
         public virtual DbSet<ExpenseCategory> ExpenseCategory { get; set; }
+        public virtual DbSet<IncomeHistory> IncomeHistory { get; set; }
+        public virtual DbSet<ExpenseHistory> ExpenseHistory { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

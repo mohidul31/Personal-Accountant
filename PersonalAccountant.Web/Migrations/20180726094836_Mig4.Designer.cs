@@ -11,9 +11,10 @@ using System;
 namespace PersonalAccountant.Web.Migrations
 {
     [DbContext(typeof(PADatabaseContext))]
-    partial class PADatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20180726094836_Mig4")]
+    partial class Mig4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -59,8 +60,6 @@ namespace PersonalAccountant.Web.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("AccountsID");
-
                     b.Property<double>("Amount");
 
                     b.Property<DateTime?>("CreatedAt");
@@ -75,8 +74,6 @@ namespace PersonalAccountant.Web.Migrations
                     b.Property<DateTime?>("UpdatedAt");
 
                     b.HasKey("ID");
-
-                    b.HasIndex("AccountsID");
 
                     b.HasIndex("ExpenseCategoryID");
 
@@ -105,8 +102,6 @@ namespace PersonalAccountant.Web.Migrations
                     b.Property<Guid>("ID")
                         .ValueGeneratedOnAdd();
 
-                    b.Property<Guid>("AccountsID");
-
                     b.Property<double>("Amount");
 
                     b.Property<DateTime?>("CreatedAt");
@@ -122,8 +117,6 @@ namespace PersonalAccountant.Web.Migrations
 
                     b.HasKey("ID");
 
-                    b.HasIndex("AccountsID");
-
                     b.HasIndex("IncomeCategoryID");
 
                     b.ToTable("IncomeHistory");
@@ -131,11 +124,6 @@ namespace PersonalAccountant.Web.Migrations
 
             modelBuilder.Entity("PersonalAccountant.Web.PAEntity.ExpenseHistory", b =>
                 {
-                    b.HasOne("PersonalAccountant.Web.PAEntity.Accounts", "Accounts")
-                        .WithMany()
-                        .HasForeignKey("AccountsID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("PersonalAccountant.Web.PAEntity.ExpenseCategory", "ExpenseCategory")
                         .WithMany()
                         .HasForeignKey("ExpenseCategoryID")
@@ -144,11 +132,6 @@ namespace PersonalAccountant.Web.Migrations
 
             modelBuilder.Entity("PersonalAccountant.Web.PAEntity.IncomeHistory", b =>
                 {
-                    b.HasOne("PersonalAccountant.Web.PAEntity.Accounts", "Accounts")
-                        .WithMany()
-                        .HasForeignKey("AccountsID")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("PersonalAccountant.Web.PAEntity.IncomeCategory", "IncomeCategory")
                         .WithMany()
                         .HasForeignKey("IncomeCategoryID")

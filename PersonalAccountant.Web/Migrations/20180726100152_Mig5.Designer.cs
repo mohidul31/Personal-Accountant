@@ -11,9 +11,10 @@ using System;
 namespace PersonalAccountant.Web.Migrations
 {
     [DbContext(typeof(PADatabaseContext))]
-    partial class PADatabaseContextModelSnapshot : ModelSnapshot
+    [Migration("20180726100152_Mig5")]
+    partial class Mig5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

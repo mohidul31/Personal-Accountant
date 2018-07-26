@@ -1,0 +1,27 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace PersonalAccountant.Web.PAEntity
+{
+    public class IncomeHistory : Entity
+    {
+        public Guid IncomeCategoryID { get; set; }
+        [ForeignKey("IncomeCategoryID")]
+        public virtual IncomeCategory IncomeCategory { get; set; }
+
+        public Guid AccountsID { get; set; }
+        [ForeignKey("AccountsID")]
+        public virtual Accounts Accounts { get; set; }
+
+        public double Amount { get; set; }
+
+        [Column(TypeName = "Date")]
+        public DateTime Date { get; set; }
+
+        public string Remarks { get; set; }
+    }
+}
