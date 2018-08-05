@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<PersonalAccountant.Web.PAEntity.ExpenseHistory>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Expense History (List)";
 }
 
 <h2>Index</h2>
@@ -9,18 +9,19 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Amount)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Date)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Remarks)
-                </th>
+            <th>SL</th>
+            <th style="text-align:right;">
+                @Html.DisplayNameFor(model => model.Amount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Remarks)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.Accounts)
             </th>
@@ -31,29 +32,34 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Amount)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Remarks)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Accounts.AccountName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ExpenseCategory.Name)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+        @{ 
+            int serial = 1;
+        }
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@(serial++)</td>
+                <td style="text-align:right;">
+                    <span class="badge bg-red">@string.Format("{0:n0}", item.Amount)</span>
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Remarks)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Accounts.AccountName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ExpenseCategory.Name)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

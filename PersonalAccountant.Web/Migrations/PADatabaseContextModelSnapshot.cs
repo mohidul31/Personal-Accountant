@@ -129,17 +129,38 @@ namespace PersonalAccountant.Web.Migrations
                     b.ToTable("IncomeHistory");
                 });
 
+            modelBuilder.Entity("PersonalAccountant.Web.PAEntity.LoanInfo", b =>
+                {
+                    b.Property<Guid>("ID")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<double>("Amount");
+
+                    b.Property<DateTime?>("CreatedAt");
+
+                    b.Property<string>("PersonName")
+                        .IsRequired();
+
+                    b.Property<string>("Remarks");
+
+                    b.Property<DateTime?>("UpdatedAt");
+
+                    b.HasKey("ID");
+
+                    b.ToTable("LoanInfo");
+                });
+
             modelBuilder.Entity("PersonalAccountant.Web.PAEntity.ExpenseHistory", b =>
                 {
                     b.HasOne("PersonalAccountant.Web.PAEntity.Accounts", "Accounts")
                         .WithMany()
                         .HasForeignKey("AccountsID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("PersonalAccountant.Web.PAEntity.ExpenseCategory", "ExpenseCategory")
                         .WithMany()
                         .HasForeignKey("ExpenseCategoryID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 
             modelBuilder.Entity("PersonalAccountant.Web.PAEntity.IncomeHistory", b =>
@@ -147,12 +168,12 @@ namespace PersonalAccountant.Web.Migrations
                     b.HasOne("PersonalAccountant.Web.PAEntity.Accounts", "Accounts")
                         .WithMany()
                         .HasForeignKey("AccountsID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("PersonalAccountant.Web.PAEntity.IncomeCategory", "IncomeCategory")
                         .WithMany()
                         .HasForeignKey("IncomeCategoryID")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .OnDelete(DeleteBehavior.Restrict);
                 });
 #pragma warning restore 612, 618
         }

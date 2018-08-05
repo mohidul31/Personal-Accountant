@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<PersonalAccountant.Web.PAEntity.IncomeHistory>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Income History (List)";
 }
 
 <h2>Index</h2>
@@ -9,10 +9,11 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
-                <th>
+            <th>Sl</th>
+                <th style="text-align:right">
                     @Html.DisplayNameFor(model => model.Amount)
                 </th>
                 <th>
@@ -31,13 +32,19 @@
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@{
+        int serial = 1;
+}
+    @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Amount)
+                @(serial++)
+            </td>
+            <td style="text-align:right">
+                <span class="badge bg-green">@string.Format("{0:n0}", item.Amount)</span>    
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Date)
+                @item.Date.ToShortDateString()
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Remarks)

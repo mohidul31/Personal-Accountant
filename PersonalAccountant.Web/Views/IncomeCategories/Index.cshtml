@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<PersonalAccountant.Web.PAEntity.IncomeCategory>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Income Category (List)";
 }
 
 <h2>Index</h2>
@@ -9,12 +9,13 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.Name)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th style="text-align:right">Total Income</th>
             <th></th>
         </tr>
     </thead>
@@ -23,6 +24,14 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
+                <a href="/IncomeHistories/index?IncomeCategory=@item.ID" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+
+            </td>
+            <td align="right">
+                @{
+                    double total_income = new PersonalAccountant.Web.Models.IncomeModel().GetTotalIncomeByIncomeCategory(item.ID);
+                }
+                <span class="badge bg-green">@string.Format("{0:n0}", total_income)</span>
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

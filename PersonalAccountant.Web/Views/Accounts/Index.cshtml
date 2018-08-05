@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<PersonalAccountant.Web.PAEntity.Accounts>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Account (List)";
 }
 
 <h2>Index</h2>
@@ -9,12 +9,15 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
-<table class="table">
+<table class="table table-bordered table-striped">
     <thead>
         <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.AccountName)
-                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AccountName)
+            </th>
+            <th style="text-align:right">Income</th>
+            <th style="text-align:right">Expense</th>
+            <th style="text-align:right">Current Balance</th>
             <th></th>
         </tr>
     </thead>
@@ -23,6 +26,29 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.AccountName)
+            </td>
+            <td align="right">
+                @{
+                    double total_income = new PersonalAccountant.Web.Models.IncomeModel().GetTotalIncomeByAccount(item.ID);
+                }
+                <span class="badge bg-green">@string.Format("{0:n0}", total_income)</span>
+                <a href="/IncomeHistories/index?Account=@item.ID" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+
+
+            </td>
+            <td align="right">
+                @{
+                    double total_expense = new PersonalAccountant.Web.Models.ExpenseModel().GetTotalExpenseByAccount(item.ID);
+                }
+                <span class="badge bg-red">@string.Format("{0:n0}", total_expense)</span>
+                <a href="/ExpenseHistories/index?Account=@item.ID" target="_blank"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                
+
+
+            </td>
+            <td align="right">
+                <span class="badge bg-blue">@string.Format("{0:n0}", (total_income - total_expense))</span>
+                
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |

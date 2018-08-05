@@ -21,7 +21,7 @@ namespace PersonalAccountant.Web.Controllers
         // GET: IncomeCategories
         public async Task<IActionResult> Index()
         {
-            return View(await _context.IncomeCategory.ToListAsync());
+            return View(await _context.IncomeCategory.OrderBy(x => x.Name).ToListAsync());
         }
 
         // GET: IncomeCategories/Details/5

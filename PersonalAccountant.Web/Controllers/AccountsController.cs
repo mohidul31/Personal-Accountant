@@ -21,7 +21,7 @@ namespace PersonalAccountant.Web.Controllers
         // GET: Accounts
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Accounts.ToListAsync());
+            return View(await _context.Accounts.OrderBy(x => x.AccountName).ToListAsync());
         }
 
         // GET: Accounts/Details/5

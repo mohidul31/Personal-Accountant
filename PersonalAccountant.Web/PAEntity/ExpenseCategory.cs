@@ -10,5 +10,7 @@ namespace PersonalAccountant.Web.PAEntity
     {
         [Required]
         public string Name { get; set; }
+
+        public virtual ICollection<ExpenseHistory> ExpenseHistoryList { get; set; }
     }
 }

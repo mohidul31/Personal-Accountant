@@ -19,9 +19,20 @@ namespace PersonalAccountant.Web.Controllers
         }
 
         // GET: ExpenseHistories
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Guid? ExpCategory, Guid? Account)
         {
-            var pADatabaseContext = _context.ExpenseHistory.Include(e => e.Accounts).Include(e => e.ExpenseCategory);
+            IQueryable<ExpenseHistory> pADatabaseContext = _context.ExpenseHistory.OrderByDescending(x => x.Date).Include(i => i.Accounts).Include(i => i.ExpenseCategory);
+            if (ExpCategory.HasValue)
+            {
+                pADatabaseContext = pADatabaseContext.Where(x => x.ExpenseCategory.ID == ExpCategory.Value);
+            }
+
+            if (Account.HasValue)
+            {
+                pADatabaseContext = pADatabaseContext.Where(x => x.Accounts.ID == Account.Value);
+            }
+
+
             return View(await pADatabaseContext.ToListAsync());
         }
 

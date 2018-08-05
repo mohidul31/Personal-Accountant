@@ -19,9 +19,18 @@ namespace PersonalAccountant.Web.Controllers
         }
 
         // GET: IncomeHistories
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(Guid? IncomeCategory, Guid? Account)
         {
-            var pADatabaseContext = _context.IncomeHistory.Include(i => i.Accounts).Include(i => i.IncomeCategory);
+
+            IQueryable<IncomeHistory> pADatabaseContext = _context.IncomeHistory.OrderByDescending(x => x.Date).Include(i => i.Accounts).Include(i => i.IncomeCategory);
+            if (IncomeCategory.HasValue)
+            {
+                pADatabaseContext = pADatabaseContext.Where(x => x.IncomeCategory.ID == IncomeCategory.Value);
+            }
+            if (Account.HasValue)
+            {
+                pADatabaseContext = pADatabaseContext.Where(x => x.Accounts.ID == Account.Value);
+            }
             return View(await pADatabaseContext.ToListAsync());
         }
 
