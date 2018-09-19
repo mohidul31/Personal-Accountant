@@ -4,10 +4,9 @@
     ViewData["Title"] = "Account (List)";
 }
 
-<h2>Index</h2>
 
-<p>
-    <a asp-action="Create">Create New</a>
+<p class="text-right">
+    <a asp-action="Create" class="btn btn-success"><i class="fa fa-plus" aria-hidden="true"></i>&nbsp;&nbsp;Create New Account</a>
 </p>
 <table class="table table-bordered table-striped">
     <thead>
@@ -50,10 +49,9 @@
                 <span class="badge bg-blue">@string.Format("{0:n0}", (total_income - total_expense))</span>
                 
             </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            <td style="text-align:right">
+                <a asp-action="Edit" asp-route-id="@item.ID"><i class="fa fa-edit btn btn-warning btn-xs" aria-hidden="true"></i></a> |
+                <a asp-action="Delete" asp-route-id="@item.ID"><i class="fa fa-remove btn btn-danger btn-xs" aria-hidden="true"></i></a>
             </td>
         </tr>
 }

@@ -57,8 +57,8 @@ namespace PersonalAccountant.Web.Controllers
         // GET: IncomeHistories/Create
         public IActionResult Create()
         {
-            ViewData["AccountsID"] = new SelectList(_context.Accounts, "ID", "AccountName");
-            ViewData["IncomeCategoryID"] = new SelectList(_context.IncomeCategory, "ID", "Name");
+            ViewData["AccountsID"] = new SelectList(_context.Accounts.OrderBy(x => x.AccountName), "ID", "AccountName");
+            ViewData["IncomeCategoryID"] = new SelectList(_context.IncomeCategory.OrderBy(x => x.Name), "ID", "Name");
             return View();
         }
 
@@ -76,8 +76,8 @@ namespace PersonalAccountant.Web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountsID"] = new SelectList(_context.Accounts, "ID", "AccountName", incomeHistory.AccountsID);
-            ViewData["IncomeCategoryID"] = new SelectList(_context.IncomeCategory, "ID", "Name", incomeHistory.IncomeCategoryID);
+            ViewData["AccountsID"] = new SelectList(_context.Accounts.OrderBy(x => x.AccountName), "ID", "AccountName", incomeHistory.AccountsID);
+            ViewData["IncomeCategoryID"] = new SelectList(_context.IncomeCategory.OrderBy(x => x.Name), "ID", "Name", incomeHistory.IncomeCategoryID);
             return View(incomeHistory);
         }
 
@@ -94,8 +94,8 @@ namespace PersonalAccountant.Web.Controllers
             {
                 return NotFound();
             }
-            ViewData["AccountsID"] = new SelectList(_context.Accounts, "ID", "AccountName", incomeHistory.AccountsID);
-            ViewData["IncomeCategoryID"] = new SelectList(_context.IncomeCategory, "ID", "Name", incomeHistory.IncomeCategoryID);
+            ViewData["AccountsID"] = new SelectList(_context.Accounts.OrderBy(x => x.AccountName), "ID", "AccountName", incomeHistory.AccountsID);
+            ViewData["IncomeCategoryID"] = new SelectList(_context.IncomeCategory.OrderBy(x => x.Name), "ID", "Name", incomeHistory.IncomeCategoryID);
             return View(incomeHistory);
         }
 
@@ -131,8 +131,8 @@ namespace PersonalAccountant.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountsID"] = new SelectList(_context.Accounts, "ID", "AccountName", incomeHistory.AccountsID);
-            ViewData["IncomeCategoryID"] = new SelectList(_context.IncomeCategory, "ID", "Name", incomeHistory.IncomeCategoryID);
+            ViewData["AccountsID"] = new SelectList(_context.Accounts.OrderBy(x => x.AccountName), "ID", "AccountName", incomeHistory.AccountsID);
+            ViewData["IncomeCategoryID"] = new SelectList(_context.IncomeCategory.OrderBy(x => x.Name), "ID", "Name", incomeHistory.IncomeCategoryID);
             return View(incomeHistory);
         }
 

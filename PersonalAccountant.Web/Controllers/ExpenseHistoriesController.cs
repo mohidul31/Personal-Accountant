@@ -59,8 +59,8 @@ namespace PersonalAccountant.Web.Controllers
         // GET: ExpenseHistories/Create
         public IActionResult Create()
         {
-            ViewData["AccountsID"] = new SelectList(_context.Accounts, "ID", "AccountName");
-            ViewData["ExpenseCategoryID"] = new SelectList(_context.ExpenseCategory, "ID", "Name");
+            ViewData["AccountsID"] = new SelectList(_context.Accounts.OrderBy(x => x.AccountName), "ID", "AccountName");
+            ViewData["ExpenseCategoryID"] = new SelectList(_context.ExpenseCategory.OrderBy(x => x.Name), "ID", "Name");
             return View();
         }
 
@@ -78,8 +78,8 @@ namespace PersonalAccountant.Web.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountsID"] = new SelectList(_context.Accounts, "ID", "AccountName", expenseHistory.AccountsID);
-            ViewData["ExpenseCategoryID"] = new SelectList(_context.ExpenseCategory, "ID", "Name", expenseHistory.ExpenseCategoryID);
+            ViewData["AccountsID"] = new SelectList(_context.Accounts.OrderBy(x => x.AccountName), "ID", "AccountName", expenseHistory.AccountsID);
+            ViewData["ExpenseCategoryID"] = new SelectList(_context.ExpenseCategory.OrderBy(x => x.Name), "ID", "Name", expenseHistory.ExpenseCategoryID);
             return View(expenseHistory);
         }
 
@@ -96,8 +96,8 @@ namespace PersonalAccountant.Web.Controllers
             {
                 return NotFound();
             }
-            ViewData["AccountsID"] = new SelectList(_context.Accounts, "ID", "AccountName", expenseHistory.AccountsID);
-            ViewData["ExpenseCategoryID"] = new SelectList(_context.ExpenseCategory, "ID", "Name", expenseHistory.ExpenseCategoryID);
+            ViewData["AccountsID"] = new SelectList(_context.Accounts.OrderBy(x => x.AccountName), "ID", "AccountName", expenseHistory.AccountsID);
+            ViewData["ExpenseCategoryID"] = new SelectList(_context.ExpenseCategory.OrderBy(x => x.Name), "ID", "Name", expenseHistory.ExpenseCategoryID);
             return View(expenseHistory);
         }
 
@@ -133,8 +133,8 @@ namespace PersonalAccountant.Web.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountsID"] = new SelectList(_context.Accounts, "ID", "AccountName", expenseHistory.AccountsID);
-            ViewData["ExpenseCategoryID"] = new SelectList(_context.ExpenseCategory, "ID", "Name", expenseHistory.ExpenseCategoryID);
+            ViewData["AccountsID"] = new SelectList(_context.Accounts.OrderBy(x => x.AccountName), "ID", "AccountName", expenseHistory.AccountsID);
+            ViewData["ExpenseCategoryID"] = new SelectList(_context.ExpenseCategory.OrderBy(x => x.Name), "ID", "Name", expenseHistory.ExpenseCategoryID);
             return View(expenseHistory);
         }
 
