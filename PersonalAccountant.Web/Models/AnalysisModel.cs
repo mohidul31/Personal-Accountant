@@ -15,28 +15,17 @@ namespace PersonalAccountant.Web.Models
             return income - expense;
         }
 
-        public double GetCurrentBalanceThisMonth()
+        public double GetRemainingBalanceByMonthYear(int month=0,int year=0)
         {
-            int month = DateTime.Now.Month;
-            int year = DateTime.Now.Year;
+            month =(month==0 ? DateTime.Now.Month : month);
+            year =(year==0 ? DateTime.Now.Year : year);
+
             double income = new IncomeModel().GetTotalIncomeByMonth(month,year);
             double expense = new ExpenseModel().GetTotalExpenseByMonth(month,year);
 
             return income - expense;
         }
 
-        public double GetCurrentBalancePreviousMonth()
-        {
-            int month = DateTime.Now.Month;
-            int year = DateTime.Now.Year;
-
-            int pmonth = (month==1 ? 12 : month-1);
-            int pyear = year-1;
-
-            double income = new IncomeModel().GetTotalIncomeByMonth(pmonth, pyear);
-            double expense = new ExpenseModel().GetTotalExpenseByMonth(pmonth, pyear);
-
-            return income - expense;
-        }
+       
     }
 }

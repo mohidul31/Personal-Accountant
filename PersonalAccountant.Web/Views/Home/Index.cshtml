@@ -356,66 +356,65 @@
                         </div>
                     </div>
                     <!-- ./col -->
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-green">
-                            <div class="inner">
-                                <h3>
-                                    @{
-                                        double currentBalanceThisMonth = new AnalysisModel().GetCurrentBalanceThisMonth();
-                                    }
-                                    @string.Format("{0:n0}", currentBalanceThisMonth)
-                                </h3>
-                                <p>This Month Balance</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
-                            </div>
-                            <a href="#" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    <div class="col-lg-3 col-xs-6">
-                        <!-- small box -->
-                        <div class="small-box bg-green">
-                            <div class="inner">
-                                <h3>
-                                    @{
-                                        double currentBalancePreviousMonth = new AnalysisModel().GetCurrentBalancePreviousMonth();
-                                    }
-                                    @string.Format("{0:n0}", currentBalancePreviousMonth)
-                                </h3>
-                                <p>Previous Month Balance</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-stats-bars"></i>
-                            </div>
-                            <a href="#" class="small-box-footer"> <i class="fa fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                    <!-- ./col -->
-                    @*<div class="col-lg-3 col-xs-6">
-                            <div class="small-box bg-red">
-                                <div class="inner">
-                                    <h3>65</h3>
-                                    <p>Unique Visitors</p>
-                                </div>
-                                <div class="icon">
-                                    <i class="ion ion-pie-graph"></i>
-                                </div>
-                                <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
-                            </div>
-                        </div>*@
-                    <!-- ./col -->
+                   
+
                 </div>
                 <!-- /.row -->
                 <!-- Main row -->
                 <div class="row">
+                    <!-- Default box -->
+                    <div class="box">
+                        <div class="box-header with-border">
+                            <h3 class="box-title">Month Wise Balance</h3>
+                            <div class="box-tools pull-right">
+                                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
+                                        title="Collapse">
+                                    <i class="fa fa-minus"></i>
+                                </button>
+                                <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
+                                    <i class="fa fa-times"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="box-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr class="success">
+                                        <td>Month</td>
+                                        @for (int i = DateTime.Now.Year; i >= 2017 ; i--)
+                                        {
+                                            <td style="text-align:right">@i </td>
+                                        }
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @for (int month = 1; month <=12 ; month++)
+                                    {
+                                        <tr>
+                                            <td  class="success">@System.Globalization.CultureInfo.CurrentCulture.DateTimeFormat.GetMonthName(month)</td>
+                                            @for (int year = DateTime.Now.Year; year >= 2017; year--)
+                                            {
+                                                double balance = new AnalysisModel().GetRemainingBalanceByMonthYear(month,year);
 
+                                            <td style="text-align:right">@string.Format("{0:n0}", balance)</td>
+                                            }
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            Footer
+                        </div>
+                        <!-- /.box-footer-->
+                    </div>
+                    <!-- /.box -->
                 </div>
                 <!-- /.row (main row) -->
             </section>
             <!-- /.content -->
+
         </div>
         <!-- /.content-wrapper -->
         <footer class="main-footer">
